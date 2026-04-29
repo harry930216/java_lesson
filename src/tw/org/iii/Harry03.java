@@ -15,6 +15,13 @@ public class Harry03 {
 		System.out.println(c1);
 		System.out.println(c2);
 		System.out.println(c3);
+		
+		// boolean : true / false
+		boolean b1 = true;
+		boolean b2 = false;
+		
+		System.out.println(b1);
+		System.out.println(b2);
 
 	}
 
