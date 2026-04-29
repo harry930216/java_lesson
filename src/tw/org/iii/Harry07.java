@@ -2,9 +2,10 @@ package tw.org.iii;
 
 public class Harry07 {
 
+	int i = 0;
 	public static void main(String[] args) {
 		
-		int i = 0;		
+				
 		for (initial(); i < 10; contin()) {
 			System.out.printf("步驟2第 + %d + 次",i+1);
 		}
