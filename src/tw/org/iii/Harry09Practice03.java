@@ -30,25 +30,18 @@ isTriangle 不要在 main 裡寫，單獨一個方法
 public class Harry09Practice03 {
 
 	public static void main(String[] args) {
-
-		int randomNubmer = (int) (Math.random() * 100 + 1);
-		boolean isFizz = (randomNubmer % 3 == 0);
-		boolean isBuzz = (randomNubmer % 5 == 0);
-
-		System.out.println(randomNubmer);
-
-		if (isFizz == true) {
-			if (isBuzz == true) {
-				System.out.println("FizzBuzz");
-			} else {
-				System.out.println("Fizz");
-			}
-		} else if (isBuzz == true) {
-			System.out.println("Buzz");
-		} else {
-			System.out.println(randomNubmer);
+		
+		for ( int i = 0; i < 5; i++) {
+			int a = (int)(Math.random()*20+1);
+			int b = (int)(Math.random()*20+1);
+			int c = (int)(Math.random()*20+1);
+			System.out.printf("a=%d, b=%d, c=%d → %s 組成三角形",a,b,c,isTriangle(a,b,c)?"能":"不能");
+			System.out.println();
 		}
-
 	}
-
+	
+	public static boolean isTriangle(int a, int b, int c) {
+		return a + b > c && a + c > b && b + c > a;
+	}
+	
 }

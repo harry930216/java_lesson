@@ -9,8 +9,8 @@ public class Harry10Practice {
 
 	public static void main(String[] args) {
 		
-		final int COWS = 2;
-		final int COLS = 4;
+		final int COWS = 10;
+		final int COLS = 10;
 		final int START = 1;
 		
 		for (int k = 0; k < COWS; k++) {
@@ -22,7 +22,9 @@ public class Harry10Practice {
 				}
 				System.out.println();
 			}
+			System.out.println();
 		}
+		
 	}
 
 }
