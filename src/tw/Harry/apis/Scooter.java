@@ -10,7 +10,6 @@ public class Scooter extends Bike {
 		}
 		return this.gear;
 	}
-	
 	// Override
 	public void upSpeed() {
 		speed = speed < 1? 1:speed * 3 * gear;
