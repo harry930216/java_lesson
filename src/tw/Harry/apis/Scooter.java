@@ -3,6 +3,15 @@ package tw.Harry.apis;
 public class Scooter extends Bike {
 	
 	private int gear;
+	private String color;
+	
+	public Scooter() {
+		color = "yellow";
+	}
+	
+	public Scooter(String color) {
+		this.color = "color";
+	}
 	
 	public int changeGear(int gear) {
 		if (gear >= 0 && gear <=4) {
