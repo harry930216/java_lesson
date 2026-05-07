@@ -2,6 +2,20 @@ package tw.Harry.apis;
 
 public class TWid {
 	private String id;
+	
+
+	public TWid() {
+
+	}
+	public TWid(boolean isMale) {
+
+	}
+	public TWid(char area) {
+
+	}
+	public TWid(boolean isMale, char area) {
+		
+	}
 
 	public static boolean isRight(String id) {
 		boolean ret = false;
