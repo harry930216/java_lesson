@@ -43,32 +43,61 @@ package tw.org.iii.practice.interfaces;
 public class Ex10_DependencyInjection {
 
 	public static void main(String[] args) {
-
+		new UserService10(new JpaUserDB10());
+		getUser(1L); // → 印 User
+//	     - new UserService10(new MongoUserDB10()) 然後 getUser(2L) → 印 User
+//	     - new UserService10(new FakeUserDB10()) 然後 getUser(3L) → 印 User
 	}
 }
 
 interface UserDB10 {
-
+	User10 findById(Long id);
 }
 
 class User10 {
-
+	String name;
+	Long id;
+	
+	public User10(String n,Long i) {
+		name = n;
+		id = i;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "User(" + name + ", " + id + ")";
+	}
 }
 
 class JpaUserDB10 implements UserDB10 {
-
+	@Override
+	public User10 findById(Long id) {
+		System.out.println("[JPA] 查 user id=" + id);
+		return (new User10("Jpa王", id));
+	}
 }
 
 class MongoUserDB10 implements UserDB10 {
-
+	@Override
+	public User10 findById(Long id) {
+		System.out.println("[Mongo] 查 user id=" + id);
+		return (new User10("Mongo王", id));
+	}
 }
 
 class FakeUserDB10 implements UserDB10 {
-
+	@Override
+	public User10 findById(Long id) {
+		return (new User10("假人", id));
+	}
 }
 
 class UserService10 {
-
+	UserDB10 db;
+	public UserService10(UserDB10 db) { this.db = db; }
+	public User10 getUser(Long id) { return db.findById(id); }
+	
 }
 
 /* === 觀察結果（寫完填這裡）===

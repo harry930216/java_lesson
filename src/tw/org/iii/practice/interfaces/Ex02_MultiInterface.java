@@ -17,27 +17,40 @@ package tw.org.iii.practice.interfaces;
 public class Ex02_MultiInterface {
 
 	public static void main(String[] args) {
+		Triathlete t = new Triathlete();
+		t.swim();
+		t.run();
 
+		Swimmable s = new Triathlete();
+		s.swim();
+
+		Runnable2 r = new Triathlete();
+		r.run();
 	}
+
 }
 
 interface Swimmable {
-
+	void swim();
 }
 
 interface Runnable2 {
-
+	void run();
 }
 
 class Triathlete implements Swimmable, Runnable2 {
+	public void swim() {
+		System.out.println("游泳");
+	}
+
+	public void run() {
+		System.out.println("跑步");
+	}
 
 }
-
-/* === 觀察結果（寫完填這裡）===
-Triathlete 視角能呼叫：
-Swimmable 視角能呼叫：
-Runnable2 視角能呼叫：
-
-一句話解釋為什麼介面視角能看到的方法不同：
-
-*/
+/*
+ * === 觀察結果（寫完填這裡）=== Triathlete 視角能呼叫： Swimmable 視角能呼叫： Runnable2 視角能呼叫：
+ * 
+ * 一句話解釋為什麼介面視角能看到的方法不同：
+ * 編譯器看宣告後 產生用方法清單
+ */
