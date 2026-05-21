@@ -31,13 +31,13 @@ public class Ex02_GenericMethod {
 		
 	}
 	
-//	public static <T> List<T> reversed(List<T> l) {
-//		List<T> newList = new ArrayList<>(); 
-//		for (int i, i<) {
-//			
-//		}
-//		return List<T>;
-//	}
+	public static <T> List<T> reversed(List<T> l) {
+		List<T> newList = new ArrayList<>(); 
+		for (int i = 1; i <= l.size(); i++) {
+			newList.add(l.get(l.size()-i));
+		}
+		return newList;
+	}
 
 }
 
@@ -46,11 +46,11 @@ public class Ex02_GenericMethod {
 /* === 觀察結果（寫完填這裡）===
 
 Q1
-
+	在回傳值之前
 Q2
-
+	Object 推測型別
 Q3
-
+	不知道
 Q4
-
+	用T 也就是輸入的型別
 */
