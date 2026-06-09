@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+    </head>
+    <body>
+        <form action="Harry06" method="get">
+            Account: <input type="text" name="account" /><br />
+            Password: <input type="password" name="passwd" /><br />
+            Gender: 
+            <input type="radio" name ="gender" value = "m"/> Male 
+            <input type="radio" name = "gender" value = "f"/> Female
+            <input type="submit" value="Register" />
+        </form>
+    </body>
+</html>
+
+<!-- ============================================================
+     【按下 submit 後,瀏覽器「自動」做的事】← 全程不需後端參與
+
+     1. 掃描表單,收集所有「有 name」的欄位
+        - text / password → 收使用者打的字
+        - radio / checkbox → 只收「被選中」那顆的 value,沒選的跳過
+        - 沒 name 的(例如 submit 按鈕)→ 跳過不收
+
+     2. 每個欄位組成一組  name=value
+
+     3. 用 & 把多組串起來：name1=value1&name2=value2
+
+     4. 對特殊字元自動做 URL 編碼(encode)
+        - 空白 → %20、中文 → %E4%xx…(避免破壞網址結構)
+
+     5. method="get" → 整串接在 action 後面、前面加 ?
+        → Harry06?account=harry&passwd=1234&gender=m
+
+     6. 導航到這個新網址、送出 GET 請求(網址列因此改變)
+
+     7. 收到後端回應後 → 整頁重載(丟掉舊頁,顯示新頁)
+
+     ─────────────────────────────────────────────
+     重點:以上「打包 + 改網址 + 送出」全是瀏覽器(前端)做的,
+           後端一行沒改也會發生。
+           後端要等請求送達後才登場 → 負責「收值 + 處理 + 回應」。
+-->

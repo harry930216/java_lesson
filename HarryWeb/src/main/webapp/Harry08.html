@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form action="Harry08" method="post"
+			enctype="multipart/form-data">
+			Account: <input name="account" /><br />
+			File1: <input type="file" name="upload" /><br />
+			File2: <input type="file" name="upload" /><br />
+			File3: <input type="file" name="upload" /><br />
+			File4: <input type="file" name="upload" /><br />
+			<input type="submit" value="Upload" />
+		</form>
+	</body>
+</html>
+
+<!-- ============================================================
+     【前端:瀏覽器如何「切割 part」】← enctype=multipart/form-data 觸發
+
+     按下 submit 後,瀏覽器:
+     1. 把每個「有 name」的欄位,各切成一個獨立 part(段)
+     2. 產生一條隨機分隔線 boundary,寫進 header,隔開各段
+     3. 所有段打包進請求 body,用 POST 送出
+
+     part 數量規則:
+     - 一個有 name 的欄位        = 一個 part
+     - 同 name 的多個欄位        → 各自獨立 part,不合併(4 個 upload = 4 個)
+     - file 沒選檔案             → 仍送一個 part,但 size=0、檔名空
+     - submit 沒 name           → 不送
+     - 文字欄位也是 part         → 只是沒有 filename
+
+     本表單 = 1(account) + 4(upload) = 5 個 part
+-->
