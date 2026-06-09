@@ -10,7 +10,18 @@ import java.io.IOException;
 @WebServlet("/Test060901")
 public class Test060901 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		String account = request.getParameter("account");
+		String passwd = request.getParameter("passwd");
+		
+		System.out.println(account);
+		System.out.println(passwd);
+		
+		
+		
+		
+		response.setContentType("text/html; charset=UTF-8");
 	}
 
 }
