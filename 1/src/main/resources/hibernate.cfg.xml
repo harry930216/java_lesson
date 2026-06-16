@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hibernate-configuration>
 	<session-factory>
-		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/harry</property>
-		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>  <!-- 用哪個 JDBC 驅動：MySQL 8 -->
+
+		<property name="connection.url">jdbc:mysql://localhost:3306/harry</property>  <!-- 連本機 localhost、port 3306、資料庫名 harry -->
+
+		<property name="connection.username">root</property>  <!-- DB 帳號 -->
+
+		<property name="connection.password">root</property>  <!-- DB 密碼 -->
+
 		
-		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.show_sql">true</property>  <!-- 把 Hibernate 實際送出的 SQL 印到主控台（學習期務必開）-->
+
+		<property name="hibernate.format_sql">true</property>  <!-- 把印出來的 SQL 排版換行，不要擠成一行 -->
+
 	</session-factory>
 </hibernate-configuration>
 

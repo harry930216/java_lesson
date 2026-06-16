@@ -1,17 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>  <!-- POM 格式版本，固定 4.0.0 -->
+
+	<!-- pom.xml 是什麼（一句話）
+專案的「身分證 + 購物清單」：上半告訴 Maven「我是誰」（GAV），下半告訴 Maven「我要用哪些別人寫好的函式庫」，Maven
+	自動幫你下載、管理版本。
+
+GAV = groupId : artifactId : version，Maven 世界裡每個套件的唯一座標。你引用 hibernate 就是靠它那組
+	GAV 找到的。
+依賴會「傳遞」：你只寫了 hibernate-core，但它自己又依賴一堆別的 jar，Maven 會連同下游一起抓（transitive
+	dependency 傳遞依賴），不用你一個個列。-->
+
+	<!-- 以下三行是「這個專案自己的座標 (GAV)」，用來唯一識別、也是被別人引用時的依據；
+	     groupId 慣例用反向網域(如 tw.harry)，這裡被 Eclipse 自動帶成資料夾名 "1" -->
 	<groupId>1</groupId>
 	<artifactId>1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>  <!-- SNAPSHOT = 開發中、未正式發布的版本 -->
 
-	<dependencies>
+	<dependencies>  <!-- 依賴清單：Maven 會自動上網下載這些 jar 並加進 classpath -->
+
 		<!-- Source:
 		https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
+			<artifactId>hibernate-core</artifactId>  <!-- ORM 框架本體 -->
 			<version>6.5.2.Final</version>
 		</dependency>
 
@@ -19,7 +32,8 @@
 		https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<artifactId>mysql-connector-java</artifactId>  <!-- MySQL 的 JDBC
+			驅動（程式靠它連 MySQL）-->
 			<version>8.0.33</version>
 		</dependency>
 	</dependencies>
