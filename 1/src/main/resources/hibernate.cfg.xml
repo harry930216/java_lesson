@@ -14,6 +14,16 @@
 
 		<property name="hibernate.format_sql">true</property>  <!-- 把印出來的 SQL 排版換行，不要擠成一行 -->
 
+		<!-- ===== 自己看過：今天新增 entity 註冊（改用 XML 方式） ===== -->
+		<!-- 每個 <mapping class="..."> = 告訴 Hibernate「這個類別是 entity，要對映成資料表」。 -->
+		<!-- 這取代了 HibernateUtil.java 裡的 cfg.addAnnotatedClass(...)；兩者擇一即可，今天起統一用這裡。 -->
+		<!-- 注意 package 是 tw.harry（你的），不是老師的 tw.brad。 -->
+		<mapping class="tw.harry.entity.Test"></mapping>        <!-- 原本用程式碼註冊的 Test，搬到這裡 -->
+		<mapping class="tw.harry.entity.Member"></mapping>      <!-- 今天新增：會員主檔 -->
+		<mapping class="tw.harry.entity.MemberInfo"></mapping>  <!-- 今天新增：會員詳細資料（與 Member 共用主鍵） -->
+		<mapping class="tw.harry.entity.Order"></mapping>       <!-- 一對多：訂單。這次登記了，因為 service 要實際跑 -->
+		<mapping class="tw.harry.entity.OrderItem"></mapping>   <!-- 一對多：訂單品項 -->
+
 	</session-factory>
 </hibernate-configuration>
 
