@@ -204,4 +204,29 @@ public class OrderServiceImp implements OrderService {
 		}
 	}
 
+	//-------------------------- 老師的練習方法（不在 OrderService 介面裡）--------------------------
+
+	// getOrderById：用 findById 撈訂單。純讀取、沒交易；且用 findById（沒 JOIN FETCH items）
+	public Order getOrderById(Long orderId) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			return dao.findById(session, orderId)
+					.orElseThrow(() -> new IllegalArgumentException("訂單找不到"));
+		}
+	}
+
+	// ===== 自己看過（為什麼 test1 把迴圈放在 session 內）=====
+	// test1 撈出 order 後，「趁 session 還開著」就迴圈 getItems() 印 pname。
+	// 因為 Order.items 是 @OneToMany（預設 LAZY），若像 Harry13 註解掉那種寫法把 order 帶出去、
+	// session 關了才 getItems()，會丟 LazyInitializationException。把存取留在 session 內就沒事。
+	public void test1(Long orderId) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			Order order = dao.findById(session, orderId)
+					.orElseThrow(() -> new IllegalArgumentException("訂單找不到"));
+			List<OrderItem> items = order.getItems();
+			for (OrderItem item : items) {
+				System.out.println(item.getPname());
+			}
+		}
+	}
+
 }

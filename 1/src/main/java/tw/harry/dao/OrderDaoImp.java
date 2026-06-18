@@ -62,4 +62,38 @@ public class OrderDaoImp implements OrderDao {
 				.list();
 	}
 
+	//-------------------------- 老師的 HQL 練習方法（不在 OrderDao 介面裡，純練手）--------------------------
+	// 自己看過：這幾個沒有 @Override —— 介面 OrderDao 沒宣告它們，是直接加在實作類別上的額外方法。
+
+	// test1：用 WHERE 依客戶名查訂單
+	public List<Order> test1(Session session, String cname) {
+		String hql = """
+				SELECT o
+				FROM Order o
+				WHERE o.customer = :cname
+				""";
+		return session.createQuery(hql, Order.class).setParameter("cname", cname).list();
+	}
+
+	// test2：依下單時間 odate 排序，全撈
+	public List<Order> test2(Session session) {
+		String hql = """
+				SELECT o
+				FROM Order o
+				ORDER BY o.odate
+				""";
+		return session.createQuery(hql, Order.class).list();
+	}
+
+	// test3：JOIN 到 items、用品名過濾。自己看過：老師只寫了 HQL 字串，還沒拿去 createQuery 執行，是半成品
+	public void test3() {
+		String hql = """
+				SELECT o
+				FROM Order o
+				JOIN o.items i
+				WHERE i.pname = :pname
+				ORDER BY o.id
+				""";
+	}
+
 }

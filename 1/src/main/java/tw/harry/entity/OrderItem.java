@@ -77,14 +77,15 @@ public class OrderItem {
 
 	//------------------------ 一對多關聯：OrderItem 這一端（多個品項指向一張訂單）------------------------
 
-	// ===== 自己看過（@ManyToOne，正好印證上一版的預測）=====
+	// ===== 自己看過（owner 端；fetch 老師這版改過了）=====
 	// OrderItem 是一對多的「多」端，也是「擁有方 owner」：外鍵就在這張 oitem 表，所以這邊出現 @JoinColumn。
 	//   @JoinColumn(name = "oid", nullable = false) → 外鍵欄位叫 oid、不可為 null（每個品項一定要屬於某張單）。
-	//   ← 對上你上一版記的方向「外鍵在多的那端」，現在被證實了。
-	// fetch = FetchType.LAZY ← 重點！老師「明確」設成 LAZY：只有真的呼叫 getOrder() 時才去查 order。
-	//   對照：@OneToOne(Member↔MemberInfo) 是預設 EAGER；@ManyToOne 預設其實也是 EAGER，但這裡刻意改成 LAZY。
-	//   自己看過：這正是你 Harry08 在追的 N+1／載入時機問題 —— LAZY 能避免「撈一堆 item 時順手把 order 全撈出來」。
-	@ManyToOne(fetch = FetchType.LAZY)
+	// fetch：老師「改過一次」—— 原本 LAZY，這版改回 EAGER（把 LAZY 那行註解留著對照）。
+	//   LAZY＝只有呼叫 getOrder() 才查 order；EAGER＝載入 item 時就連 order 一起查。@ManyToOne 預設本來就是 EAGER。
+	//   自己看過：想一下為什麼改回 EAGER —— 跟「item 撈出來後 session 若已關，還能不能 getOrder()」有關：
+	//   EAGER 在 session 內就載好、關了也能用；LAZY 關掉後再 getOrder() 會丟 LazyInitializationException。
+	@ManyToOne(fetch = FetchType.EAGER)
+	//@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "oid", nullable = false)
 	private Order order;
 

@@ -23,6 +23,9 @@
 		<mapping class="tw.harry.entity.MemberInfo"></mapping>  <!-- 今天新增：會員詳細資料（與 Member 共用主鍵） -->
 		<mapping class="tw.harry.entity.Order"></mapping>       <!-- 一對多：訂單。這次登記了，因為 service 要實際跑 -->
 		<mapping class="tw.harry.entity.OrderItem"></mapping>   <!-- 一對多：訂單品項 -->
+		<mapping class="tw.harry.entity.Student"></mapping>     <!-- 多對多：學生（owner，定義 @JoinTable sc）-->
+		<mapping class="tw.harry.entity.Course"></mapping>      <!-- 多對多：課程（inverse，mappedBy）-->
+		<!-- 注意：join table sc 不是 entity、不登記 <mapping>，由 Student 的 @JoinTable 自動建 -->
 
 	</session-factory>
 </hibernate-configuration>
