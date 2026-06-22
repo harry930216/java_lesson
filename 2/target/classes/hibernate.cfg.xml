@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>  <!-- MySQL 8 的 JDBC 驅動 -->
+
+		<!-- ===== 自己看過：這支連的是 north（Northwind 範例庫），不是 hi1 那個 harry！ ===== -->
+		<property name="connection.url">jdbc:mysql://localhost:3306/north</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+
+		<property name="hibernate.show_sql">true</property>    <!-- 印出 Hibernate 實際送出的 SQL（學習期開著）-->
+		<property name="hibernate.format_sql">true</property>  <!-- 把印出的 SQL 排版換行 -->
+
+		<!-- entity 註冊：注意 package 是 tw.harry.h2（你的），不是老師的 tw.brad.h2 -->
+		<mapping class="tw.harry.h2.entity.Customer"></mapping>
+		<mapping class="tw.harry.h2.entity.Employee"></mapping>
+		<mapping class="tw.harry.h2.entity.Order"></mapping>
+		<mapping class="tw.harry.h2.entity.OrderDetail"></mapping>
+		<mapping class="tw.harry.h2.entity.Product"></mapping>
+		<!-- 自己看過：OrderDetailPK 是「複合主鍵類別」不是 entity，所以不登記 <mapping>（跟 join table 不登記同理）-->
+
+	</session-factory>
+</hibernate-configuration>
